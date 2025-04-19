@@ -6,12 +6,13 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { useCart, useDispatch } from "../../../Context/CartProvider";
+import { useCart } from "../../../Context/CartProvider";
 import { useSnackbar } from "../../../Context/snackbarProvider";
+import { useCartActions } from "../../../hooks/useCartActions";
 
 export default function ProductItem({ product }) {
   const { name, image, price, description } = product;
-  const dispatch = useDispatch();
+  const {addToCart} = useCartActions();
   const { showSnackbar } = useSnackbar();
   const { cart } = useCart();
 
@@ -21,10 +22,7 @@ export default function ProductItem({ product }) {
     if (isFound) {
       showSnackbar("Product Already exists", "info");
     } else {
-      dispatch({
-        type: "add",
-        payload: product,
-      });
+      addToCart(product)
       showSnackbar("Item added to cart!", "success");
     }
   };
@@ -52,8 +50,7 @@ export default function ProductItem({ product }) {
           variant="outlined"
           onClick={handleAddProduct}
         >
-          {" "}
-          Add to cart{" "}
+          Add to cart
         </Button>
       </CardActions>
     </Card>
