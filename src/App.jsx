@@ -1,4 +1,4 @@
-import { Box, CssBaseline } from "@mui/material";
+import { Box, Container, CssBaseline } from "@mui/material";
 import { CartProvider } from "./Context/CartProvider";
 import Navbar from "./components/navbar/Navbar";
 import Products from "./pages/products/products";
@@ -8,7 +8,9 @@ function App() {
     <CartProvider>
       <CssBaseline />
       <Navbar />
-      <Products />
+      <Container>
+        <Products />
+      </Container>
     </CartProvider>
   );
 }

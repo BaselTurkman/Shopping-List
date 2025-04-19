@@ -7,6 +7,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import { useCart } from "../../Context/CartProvider";
 import CartContent from "./CartContent";
+import { Box } from "@mui/material";
 
 const CartBadge = styled(Badge)`
   & .${badgeClasses.badge} {
@@ -16,7 +17,7 @@ const CartBadge = styled(Badge)`
 `;
 
 export default function ShoppingCartIconWithBadge() {
-  const productCart = useCart();
+  const {cart} = useCart();
 
   // Drawer state
   const [open, setOpen] = useState(false);
@@ -34,11 +35,11 @@ export default function ShoppingCartIconWithBadge() {
   };
 
   return (
-    <>
+    <Box>
       <IconButton onClick={toggleDrawer(true)}>
         <ShoppingCartIcon fontSize="medium" color="action" />
         <CartBadge
-          badgeContent={productCart.cart.length}
+          badgeContent={cart.length}
           color="info"
           overlap="circular"
         />
@@ -52,6 +53,6 @@ export default function ShoppingCartIconWithBadge() {
       >
         <CartContent />
       </SwipeableDrawer>
-    </>
+    </Box>
   );
 }

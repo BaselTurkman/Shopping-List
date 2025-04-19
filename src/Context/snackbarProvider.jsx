@@ -9,11 +9,11 @@ export const SnackbarProvider = ({ children }) => {
   const [state, dispatch] = useReducer(snackbarReducer, initialSnackbar);
 
   const showSnackbar = (message, severity = "info") => {
-    dispatch({ type: "SHOW_SNACKBAR", payload: { message, severity } });
+    dispatch({ type: "show-snackbar", payload: { message, severity } });
   };
 
   const handleClose = () => {
-    dispatch({ type: "HIDE_SNACKBAR" });
+    dispatch({ type: "hide-snackbar" });
   };
 
   return (

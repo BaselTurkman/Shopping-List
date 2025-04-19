@@ -7,10 +7,18 @@ import {
 } from "@mui/material";
 import React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useDispatch } from "../../Context/CartProvider";
+import { useSnackbar } from "../../Context/snackbarProvider";
+import { useCartActions } from "../../hooks/useCartActions";
 
 function CartItem({ product }) {
-  const dispatch = useDispatch();
+  const { removeFromCart } = useCartActions();
+  const { showSnackbar } = useSnackbar();
+
+  const handleDeleteProduct = (product) => {
+    removeFromCart(product);
+    showSnackbar("Product was deleted successfully", "success");
+  };
+
   return (
     <ListItem
       key={product.id}
@@ -19,12 +27,7 @@ function CartItem({ product }) {
           edge="end"
           aria-label="delete"
           color="error"
-          onClick={() =>
-            dispatch({
-              type: "delete",
-              payload: product,
-            })
-          }
+          onClick={() => handleDeleteProduct(product)}
         >
           <DeleteIcon />
         </IconButton>
