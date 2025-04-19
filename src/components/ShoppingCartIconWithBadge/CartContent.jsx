@@ -2,17 +2,17 @@ import * as React from "react";
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
-import { useCart } from "../../Context/CartProvider";
+import { useCart } from "../../context/CartProvider";
 import { Typography } from "@mui/material";
 import CheckoutForm from "../CheckoutForm/CheckoutForm";
 import EmptyCart from "./EmptyCart";
 import CartItem from "./CartItem";
 import Checkout from "./Checkout";
-import { useSnackbar } from "../../Context/snackbarProvider";
+import { useSnackbarAlerts } from "../../hooks/useSnackbarAlerts";
 
 function CartContent() {
   const { cart } = useCart();
-  const { showSnackbar } = useSnackbar();
+  const {showSuccessSnackbar} = useSnackbarAlerts();
   const [openDialog, setOpenDialog] = useState(false);
 
   const handleCheckoutClick = () => setOpenDialog(true);
@@ -20,7 +20,7 @@ function CartContent() {
 
   const handleConfirmPurchase = () => {
     setOpenDialog(false);
-    showSnackbar("Purchase completed successfully!", "success");
+    showSuccessSnackbar("Purchase completed successfully!");
   };
 
   return (

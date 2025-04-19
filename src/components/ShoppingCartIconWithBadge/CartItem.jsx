@@ -7,16 +7,16 @@ import {
 } from "@mui/material";
 import React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useSnackbar } from "../../Context/snackbarProvider";
+import { useSnackbarAlerts } from "../../hooks/useSnackbarAlerts";
 import { useCartActions } from "../../hooks/useCartActions";
 
 function CartItem({ product }) {
   const { removeFromCart } = useCartActions();
-  const { showSnackbar } = useSnackbar();
+  const {showSuccessSnackbar} = useSnackbarAlerts();
 
   const handleDeleteProduct = (product) => {
     removeFromCart(product);
-    showSnackbar("Product was deleted successfully", "success");
+    showSuccessSnackbar("Product was deleted successfully");
   };
 
   return (

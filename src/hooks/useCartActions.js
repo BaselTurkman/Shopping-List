@@ -1,4 +1,4 @@
-import { useDispatch } from "../Context/CartProvider";
+import { useDispatch } from "../context/CartProvider";
 
 export function useCartActions() {
   const dispatch = useDispatch();

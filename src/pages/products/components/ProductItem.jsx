@@ -6,24 +6,24 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { useCart } from "../../../Context/CartProvider";
-import { useSnackbar } from "../../../Context/snackbarProvider";
 import { useCartActions } from "../../../hooks/useCartActions";
+import { useSnackbarAlerts } from "../../../hooks/useSnackbarAlerts";
+import { useCart } from "../../../context/CartProvider";
 
 export default function ProductItem({ product }) {
   const { name, image, price, description } = product;
   const {addToCart} = useCartActions();
-  const { showSnackbar } = useSnackbar();
+  const {showSuccessSnackbar, showInfoSnackbar} = useSnackbarAlerts();
   const { cart } = useCart();
 
   const handleAddProduct = () => {
     const isFound = cart.find((p) => p.id === product.id);
 
     if (isFound) {
-      showSnackbar("Product Already exists", "info");
+      showInfoSnackbar("Product Already exists");
     } else {
       addToCart(product)
-      showSnackbar("Item added to cart!", "success");
+      showSuccessSnackbar("Item added to cart!", "success");
     }
   };
 

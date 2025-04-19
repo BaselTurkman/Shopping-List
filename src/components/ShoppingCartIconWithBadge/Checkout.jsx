@@ -1,6 +1,6 @@
 import { Button, Stack, Typography } from "@mui/material";
 import React from "react";
-import { useCart } from "../../Context/CartProvider";
+import { useCart } from "../../context/CartProvider";
 
 function Checkout({handleCheckoutClick}) {
     const {total} = useCart()
